@@ -45,10 +45,8 @@ class Issues extends Component {
       {
         this.state.issues.map (
             (issue, index) => 
-        <div className="xl:w-1/3 md:w-1/2 p-4">
-          <div className="border border-gray-300 p-6 rounded-lg" key={issue.id}>
+        <div className="xl:w-1/3 md:w-1/2 p-4" key={issue.id}>
             <IssuesDetails issue={issue}/>
-          </div>
         </div>
         )}
         </div>
