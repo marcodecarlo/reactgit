@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import IssuesService from "../services/api/issues/IssuesService.js";
-import IssuesDetails from "../components/IssueDetails";
+import IssuesService from "../../services/api/issues/IssuesService.js";
+import IssuesDetails from "./IssueDetails/IssueDetails";
 import axios from "axios";
 
 class Issues extends Component {

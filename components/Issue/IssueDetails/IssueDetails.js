@@ -6,11 +6,11 @@ export default class  IssuesDetails extends Component {
     render() {
         let dateDMY = Moment(this.props.issue?.created_at).format('DD-MM-YYYY');
     return(
-        <div className="border border-gray-300 p-6 rounded-lg" key={this.props.issue.id}>
-            <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
-                {this.props.issue.state}
+        <div className="border border-gray-300 p-6 rounded-lg h-full content-between flex flex-wrap" key={this.props.issue.id}>
+            <div className={"w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 "+(this.props.issue.labels[0]?.name).replace(/ /g,"_")}>
+                {this.props.issue.number}
             </div>
-            <h2 className="text-lg  font-medium title-font mb-2">
+            <h2 className="text-lg  font-medium title-font ml-2">
                 {this.props.issue.title}
             </h2>
             <p className="leading-relaxed text-base">

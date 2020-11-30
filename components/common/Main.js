@@ -1,4 +1,4 @@
-import Issues from '../Issues';
+import Issues from '../Issue/Issues';
 
 function main() {
     return (
