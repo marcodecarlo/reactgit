@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import './IssueDetails.css'
 import Moment from 'moment';
 
 export default class  IssuesDetails extends Component {

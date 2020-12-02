@@ -18,15 +18,15 @@ const Header = () =>{
       </div>
       <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
         <div className="flex-shrink-0 flex items-center">
-        <h1 className="text">REACTGIT</h1>
+        <h1 className="text">
+          <img src={`/public/logo.svg`} alt="logo"/>
+        </h1>
        </div>
         <div className="hidden sm:block sm:ml-6">
           <div className="flex space-x-4">
             <Link to="/" className="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900">
-              Dashboard</Link>
-            <a href="#" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Team</a>
-            <a href="#" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Projects</a>
-            <a href="#" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Calendar</a>
+              Dashboard
+            </Link>
           </div>
         </div>
       </div>
@@ -60,10 +60,9 @@ const Header = () =>{
 
   <div className="hidden sm:hidden">
     <div className="px-2 pt-2 pb-3 space-y-1">
-      <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900">Dashboard</a>
-      <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Team</a>
-      <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Projects</a>
-      <a href="#" className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Calendar</a>
+      <Link to="/" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900">
+              Dashboard
+      </Link>
     </div>
   </div>
 </nav>
