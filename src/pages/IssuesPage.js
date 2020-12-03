@@ -4,11 +4,10 @@ import IssuesDetails from "../components/Issue/IssueDetails.js";
 
 class IssuesPage extends Component {
   state = {
+    issues: [],
 
-    issues : [],
-
-    ErrWebApi: false,
-    ErrMsg: "",
+    errWebApi: false,
+    errMsg: "",
   };
   componentDidMount() {
     this.findAllIssues();
@@ -33,22 +32,20 @@ class IssuesPage extends Component {
     console.log(error);
 
     this.setState({
-      ErrMsg: error.response.data.message,
-      ErrWebApi: true,
+      errMsg: error.response.data.message,
+      errWebApi: true,
     });
   };
 
   render() {
     return (
       <div className="flex flex-wrap -m-4">
-      {
-        this.state.issues.map (
-            (issue, index) => 
-        <div className="xl:w-1/3 md:w-1/2 p-4" key={issue.id}>
-            <IssuesDetails issue={issue}/>
-        </div>
-        )}
-        </div>
+        {this.state.issues.map((issue) => (
+          <div className="xl:w-1/3 md:w-1/2 p-4" key={issue.id}>
+            <IssuesDetails issue={issue} />
+          </div>
+        ))}
+      </div>
     );
   }
 }

@@ -6,7 +6,7 @@ class IssuesService {
     }
 
     getAllIssuesData = () => {
-        return axios.get(`${this.state.BaseUrl}repos/marcodecarlo/reactgit/issues`);
+        return axios.get(`${this.state.BaseUrl}repos/marcodecarlo/reactgit/issues`,{timeout: 5});
     }
 
 }
