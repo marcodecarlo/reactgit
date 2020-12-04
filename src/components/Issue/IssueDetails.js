@@ -1,5 +1,10 @@
 import React, { Component } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faComment } from '@fortawesome/free-regular-svg-icons';
+import './IssueDetails.css';
 import Moment from 'moment';
+
+
 
 export default class  IssuesDetails extends Component {
 
@@ -16,14 +21,21 @@ export default class  IssuesDetails extends Component {
             <p className="leading-relaxed text-base">
                 {this.props.issue.body}
             </p>
-
-            <div className="text-center mt-2 leading-none flex justify-between w-full">
-              <span className=" mr-3 inline-flex items-center leading-none text-sm  py-1 "></span>
+   
+            <div className="text-center mt-4 leading-none flex justify-between w-full">
+              <span className=" mr-3 inline-flex items-center leading-none text-sm  py-1 ">
+              <span className="count-icon">
+              <FontAwesomeIcon icon={faComment} size="lg"/>
+              <span className="count">{this.props.issue.comments}</span>
+              </span>
+              </span>
               <span className=" inline-flex items-center leading-none text-sm">
                  Creata da : {this.props.issue.user?.login} il {dateDMY}
               </span>
             </div>
         </div>
+
+        
     );
     }
 };

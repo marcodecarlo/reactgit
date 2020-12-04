@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import IssuesService from "../services/api/issues/IssuesService.js";
+import IssuesService from "../lib/api/issues/IssuesService.js";
 import IssuesDetails from "../components/Issue/IssueDetails.js";
 import Spinner from "../components/common/Spinner";
 

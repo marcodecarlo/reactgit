@@ -34,3 +34,20 @@
     background-color: #D876E3;
     color: #ffffff;
 }
+
+.count-icon {
+    display: inline-block;
+    position: relative;
+}
+
+.count {
+    position: absolute;
+    top: 3px;
+    right: 1px;
+
+    height: 16px;
+    width: 16px;
+
+    font-size: 12px;    
+    text-align: center;
+}
