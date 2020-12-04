@@ -52,3 +52,11 @@
   font-size: 12px;
   text-align: center;
 }
+
+.title-card{
+  @apply text-lg font-medium leading-tight;
+}
+
+.text-anteprima{
+  @apply leading-relaxed text-base pt-5;
+}

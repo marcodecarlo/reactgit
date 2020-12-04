@@ -14,3 +14,4 @@ class IssuesService {
 }
 
 export default new IssuesService();
+       
