@@ -1,53 +1,54 @@
-.bug{
-    background-color: #D73A4A;
-    color: #ffffff;
+.bug {
+  background-color: #d73a4a;
+  color: #ffffff;
 }
-.documentation{
-    background-color: #0075CA;
-    color: #ffffff;
+.documentation {
+  background-color: #0075ca;
+  color: #ffffff;
 }
-.duplicate{
-    background-color: #CFD3D7;
-    color: #000000;
+.duplicate {
+  background-color: #cfd3d7;
+  color: #000000;
 }
-.enhancement{
-    background-color: #a2eeef;
-    color: #ffffff;
+.enhancement {
+  background-color: #a2eeef;
+  color: #ffffff;
 }
-.undefined{
-    background-color: #E0E7FF;
-    color: #6368F1;
+.undefined {
+  background-color: #e0e7ff;
+  color: #6368f1;
 }
-.good_first_issue{
-    background-color: #7057FF;
-    color: #ffffff;
+.good_first_issue {
+  background-color: #7057ff;
+  color: #ffffff;
 }
-.help_wanted{
-    background-color: #008672;
-    color: #ffffff;
+.help_wanted {
+  background-color: #008672;
+  color: #ffffff;
 }
-.invalid{
-    background-color: #E4E669;
-    color: #6368F1;
+.invalid {
+  background-color: #e4e669;
+  color: #6368f1;
 }
-.question{
-    background-color: #D876E3;
-    color: #ffffff;
+.question {
+  background-color: #d876e3;
+  color: #ffffff;
 }
 
 .count-icon {
-    display: inline-block;
-    position: relative;
+  display: inline-block;
+  position: relative;
+  color: orange;
 }
 
 .count {
-    position: absolute;
-    top: 3px;
-    right: 1px;
+  position: absolute;
+  top: 3px;
+  right: 1px;
 
-    height: 16px;
-    width: 16px;
+  height: 16px;
+  width: 16px;
 
-    font-size: 12px;    
-    text-align: center;
+  font-size: 12px;
+  text-align: center;
 }

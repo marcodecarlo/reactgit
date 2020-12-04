@@ -24,7 +24,7 @@ class IssuesPage extends Component {
     console.log("response");
     this.setState({
       issues: this.state.issues.concat(response.data),
-      loading: true
+      loading: true,
     });
     console.log(this.state.issues);
     console.log(this.state.loading);
@@ -35,7 +35,6 @@ class IssuesPage extends Component {
     console.log(error);
 
     this.setState({
-      
       errWebApi: true,
       loading: true,
     });
@@ -44,17 +43,17 @@ class IssuesPage extends Component {
   render() {
     return (
       <>
-      {!this.state.loading ? (
-        <Spinner />
-      ) : (
-      <div className="flex flex-wrap -m-4">
-        {this.state.issues.map((issue) => (
-          <div className="xl:w-1/3 md:w-1/2 p-4" key={issue.id}>
-            <IssuesDetails issue={issue} />
+        {!this.state.loading ? (
+          <Spinner />
+        ) : (
+          <div className="flex flex-wrap -m-4">
+            {this.state.issues.map((issue) => (
+              <div className="xl:w-1/3 md:w-1/2 p-4" key={issue.id}>
+                <IssuesDetails issue={issue} />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      )}
+        )}
       </>
     );
   }
