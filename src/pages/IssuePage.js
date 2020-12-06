@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Spinner from "../components/common/Spinner";
 import IssuesService from "../lib/api/issues/IssuesService.js";
 import Issue from "../components/Issue/Issue.js";
+import Sidebar from "../components/Sidebar/Sidebar.js";
 import "./IssuePage.css";
 class IssuePage extends Component {
   state = {
@@ -54,7 +55,9 @@ class IssuePage extends Component {
             <div className="row-span-3 col-span-3 issue-content">
               <Issue issue={this.state.issue[0]} />
             </div>
-            <div className="row-span-2">Sidebar</div>
+            <div className="row-span-2">
+              <Sidebar issue={this.state.issue[0]}/>
+            </div>
           </div>
         )}
       </>
