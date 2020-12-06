@@ -18,6 +18,11 @@ class IssuesService {
       `${this.state.BaseUrl}repos/marcodecarlo/reactgit/issues/${id}`
     );
   };
+  getAllCommentsData = (id) => {
+    return axios.get(
+      `${this.state.BaseUrl}repos/marcodecarlo/reactgit/issues/${id}/comments`
+    );
+  };
 }
 
 export default new IssuesService();

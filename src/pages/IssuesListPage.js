@@ -3,9 +3,9 @@ import IssuesService from "../lib/api/issues/IssuesService.js";
 import IssuesDetails from "../components/Issue/IssueDetails.js";
 import Spinner from "../components/common/Spinner";
 
-class IssuesPage extends Component {
+class IssuesListPage extends Component {
   state = {
-    issues: [],
+    issuesList: [],
     loading: false,
     errWebApi: false,
     errMsg: "",
@@ -23,7 +23,7 @@ class IssuesPage extends Component {
   handleResponse = (response) => {
     console.log("response");
     this.setState({
-      issues: this.state.issues.concat(response.data),
+      issuesList: this.state.issuesList.concat(response.data),
       loading: true,
     });
     console.log(this.state.issues);
@@ -47,9 +47,9 @@ class IssuesPage extends Component {
           <Spinner />
         ) : (
           <div className="flex flex-wrap -m-4">
-            {this.state.issues.map((issue) => (
+            {this.state.issuesList.map((issue) => (
               <div className="xl:w-1/3 md:w-1/2 p-4" key={issue.id}>
-                <IssuesDetails issue={issue} />
+                <IssuesDetails issueDetails={issue} />
               </div>
             ))}
           </div>
@@ -59,4 +59,4 @@ class IssuesPage extends Component {
   }
 }
 
-export default IssuesPage;
+export default IssuesListPage;

@@ -1,0 +1,3 @@
+.issue-content{
+    background-image: linear-gradient(to left, rgba(255,0,0,0) calc(80% - 2px), rgba(63,135,166,1) 80%, rgba(255,0,0,0) calc(80% + 2px));
+}

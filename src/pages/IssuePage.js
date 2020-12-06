@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import Spinner from "../components/common/Spinner";
 import IssuesService from "../lib/api/issues/IssuesService.js";
 import Issue from "../components/Issue/Issue.js";
-
+import "./IssuePage.css";
 class IssuePage extends Component {
   state = {
-    issue: [],
+    issue:[],
     loading: false,
     errWebApi: false,
     errMsg: "",
@@ -13,9 +13,6 @@ class IssuePage extends Component {
 
   componentDidMount() {
     let idIssue = this.props.match.params.id;
-    console.log("componentDidMount");
-    console.log(idIssue);
-
     if (idIssue !== "-1") {
       this.findIssue(idIssue);
     }
@@ -53,14 +50,11 @@ class IssuePage extends Component {
         {!this.state.loading ? (
           <Spinner />
         ) : (
-           
-          <div className="grid grid-rows-2 grid-flow-col gap-4" key={this.state.issue.id}>
-              <div className="row-span-3 col-span-3">
-                  <Issue issue={this.state.issue}/>
-              </div>
-              <div className="row-span-2">
-                    Sidebar
-              </div>
+          <div className="grid grid-rows-2 grid-flow-col gap-4">
+            <div className="row-span-3 col-span-3 issue-content">
+              <Issue issue={this.state.issue[0]} />
+            </div>
+            <div className="row-span-2">Sidebar</div>
           </div>
         )}
       </>

@@ -1,6 +1,6 @@
 import Header from "./components/common/Header";
 import Footer from "./components/common/Footer";
-import IssuesList from "./pages/IssuesPage";
+import IssuesList from "./pages/IssuesListPage";
 import Issue from "./pages/IssuePage";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 

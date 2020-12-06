@@ -1,0 +1,8 @@
+.title{
+    @apply text-lg font-bold leading-loose uppercase;
+}
+
+.text-sub{
+    @apply text-xs italic font-light text-gray-400;
+}
+
