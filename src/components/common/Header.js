@@ -50,12 +50,22 @@ const Header = () => {
               </h1>
             </div>
             <div className="hidden sm:block sm:ml-6">
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 my-1">
                 <Link
                   to="/"
-                  className="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900"
+                  className="button_underlined"
                 >
                   Dashboard
+                </Link>
+              </div>
+            </div>
+            <div className="hidden sm:block sm:ml-6">
+              <div className="flex space-x-4 my-1">
+                <Link
+                  to="/add/issue"
+                  className="button_underlined"
+                >
+                  Aggiungi Issue
                 </Link>
               </div>
             </div>
