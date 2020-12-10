@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Spinner from "../components/common/Spinner";
+import Spinner from "../components/Spinner";
 import IssuesService from "../lib/api/issues/IssuesService.js";
 import Issue from "../components/Issue/Issue.js";
 import Sidebar from "../components/Sidebar/Sidebar.js";
@@ -14,8 +14,15 @@ class IssuePage extends Component {
 
   componentDidMount() {
     let idIssue = this.props.match.params.id;
-    if (idIssue !== "-1") {
+    if (idIssue != "-1" && idIssue != undefined) {
       this.findIssue(idIssue);
+    }else{
+      this.setState({
+        issue:[
+          {number:-1}
+        ],
+        loading: true
+      })
     }
   }
 

@@ -6,7 +6,7 @@ export default class Sidebar extends Component {
     return (
       <>
         <div className="space-y-0 divide-y divide-light-gray-300 w-1/2 ml-auto">
-          {this.props.issue.assignees.length > 0 ? (
+          {this.props.issue.assignees?.length > 0 ? (
             <>
               <div className="block text-right">
                 <p className="text-sm italic font-medium tracking-wide">

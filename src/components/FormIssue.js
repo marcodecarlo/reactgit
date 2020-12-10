@@ -9,6 +9,7 @@ const FormIssue = ({ onSubmit, onChange, onClick, issue, clickEdit }) => {
   return (
     <form onSubmit={onSubmit}>
       <input type="hidden" value={issue.number} name="number" id="number" />
+      <input type="hidden" value={issue.user?.login} name="user.login" id="login" />
       <div className="flex">
         <div className="flex-auto">
           <h1 className="m-0">

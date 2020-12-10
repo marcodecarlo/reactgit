@@ -1,7 +1,7 @@
-import Header from "./components/common/Header";
-import Footer from "./components/common/Footer";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import IssuesList from "./pages/IssuesListPage";
-import Issue from "./pages/IssuePage";
+import IssuePage from "./pages/IssuePage";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
@@ -14,7 +14,8 @@ function App() {
             <div className="px-4 py-6 sm:px-0">
               <Switch>
                 <Route path="/" exact component={IssuesList} />
-                <Route path="/issues/:id" exact component={Issue} />
+                <Route path="/add/issue" exact component={IssuePage} />
+                <Route path="/issues/:id" exact component={IssuePage} />
               </Switch>
             </div>
           </div>

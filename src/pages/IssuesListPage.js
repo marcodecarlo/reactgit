@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import IssuesService from "../lib/api/issues/IssuesService.js";
 import IssuesDetails from "../components/Issue/IssueDetails.js";
-import Spinner from "../components/common/Spinner";
+import Spinner from "../components/Spinner";
 
 class IssuesListPage extends Component {
   state = {

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import Moment from "moment";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import IssuesService from "../../lib/api/issues/IssuesService";
 import "./Issue.css";
 import FormIssue from "../FormIssue";
@@ -13,14 +11,22 @@ export default class Issue extends Component {
       number: this.props.issue.number,
       title: this.props.issue.title,
       body: this.props.issue.body,
+      created_at: this.props.issue.created_at,
+      user :{
+        login : this.props.issue.user?.login,
+      }
     },
     clickEdit: false,
   };
 
   componentDidMount() {
     let idIssue = this.props.issue.number;
-    if (idIssue !== "-1") {
+    if (idIssue != "-1" && idIssue !== undefined) {
       this.findAllComments(idIssue);
+    }else{
+      this.setState({
+        clickEdit: true
+      })
     }
   }
 
@@ -107,7 +113,7 @@ export default class Issue extends Component {
             clickEdit={this.state.clickEdit}
           />
         </div>
-        {this.state.comments.length > 0 ? (
+        {this.state.comments?.length > 0 ? (
           this.state.comments.map((commet) => {
             let dateCommentDMY = Moment(commet.created_at).format("DD-MM-YYYY");
             return (

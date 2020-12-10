@@ -5,7 +5,6 @@ class IssuesService {
     BaseUrl: "https://api.github.com/",
   };
 
-
   getAllIssuesData = () => {
     return axios.get(
       `${this.state.BaseUrl}repos/marcodecarlo/reactgit/issues`,
@@ -24,12 +23,19 @@ class IssuesService {
     );
   };
 
-  saveIssue = (issue) =>{
-    debugger;
-    return axios.post(
-      `${this.state.BaseUrl}repos/marcodecarlo/reactgit/issues/${issue.number}`, issue
-    );
-  }
+  saveIssue = (issue) => {
+    if (issue == "-1") {
+      return axios.post(
+        `${this.state.BaseUrl}repos/marcodecarlo/reactgit/issues`,
+        issue
+      );
+    } else {
+      return axios.post(
+        `${this.state.BaseUrl}repos/marcodecarlo/reactgit/issues/${issue.number}`,
+        issue
+      );
+    }
+  };
 }
 
 export default new IssuesService();
