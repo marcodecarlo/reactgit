@@ -2,23 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-
-.button_underlined{
-    position: relative;
-    @apply mx-3 py-1 text-sm font-medium text-white;
+.button_underlined {
+  position: relative;
+  @apply mx-3 py-1 text-sm font-medium text-white;
 }
 
-.button_underlined:before{
-    content : '';
-    bottom: 0px;
-    position: absolute;
-    height: 3px;
-    background-color: #ff26c8;
-    transition-property: width;
-    transition-duration: 2s;
-    transition-timing-function: linear;
-    @apply w-1/5;
+.button_underlined:before {
+  content: "";
+  bottom: 0px;
+  position: absolute;
+  height: 3px;
+  background-color: #ff26c8;
+  transition-property: width;
+  transition-duration: 2s;
+  transition-timing-function: linear;
+  @apply w-1/5;
 }
-.button_underlined:hover:before{
-    width: 100%;
+.button_underlined:hover:before {
+  width: 100%;
+}
+
+.btn-success {
+  @apply border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 ;
+}
+.btn-success:hover {
+  @apply bg-green-600;
+}
+.btn-success:focus {
+  @apply outline-none;
+}
+
+*:disabled{
+    background-color: transparent;
+}
+
+input:not(:disabled),
+textarea:not(:disabled){
+    @apply border border-green-500;
 }

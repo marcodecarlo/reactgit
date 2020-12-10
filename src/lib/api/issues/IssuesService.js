@@ -23,6 +23,13 @@ class IssuesService {
       `${this.state.BaseUrl}repos/marcodecarlo/reactgit/issues/${id}/comments`
     );
   };
+
+  saveIssue = (issue) =>{
+    debugger;
+    return axios.post(
+      `${this.state.BaseUrl}repos/marcodecarlo/reactgit/issues/${issue.number}`, issue
+    );
+  }
 }
 
 export default new IssuesService();
