@@ -1,3 +1,15 @@
 .issue-content{
+    position: relative;
     background-image: linear-gradient(to left, rgba(255,0,0,0) calc(80% - 2px), rgba(63,135,166,1) 80%, rgba(255,0,0,0) calc(80% + 2px));
+}
+
+.issue-content:before{
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: calc(80% - 10px);
+    bottom: -20px;
+    background-color: rgba(63,135,166,1);
+    border-radius: 50%;
 }
