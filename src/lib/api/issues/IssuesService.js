@@ -1,41 +1,41 @@
 import axios from "axios";
+import globalvariables from "../../../globalVariables";
 
-class IssuesService {
-  state = {
-    BaseUrl: "https://api.github.com/",
-  };
+const IssuesService = {
 
-  getAllIssuesData = () => {
+  getAllIssuesData : () => {
     return axios.get(
-      `${this.state.BaseUrl}repos/marcodecarlo/reactgit/issues`,
+      `${globalvariables.baseUrl}repos/${globalvariables.username}/${globalvariables.repo}/issues`,
       { timeout: 10000 }
     );
-  };
+  },
 
-  getIssueById = (id) => {
+  getIssueById : (id) => {
     return axios.get(
-      `${this.state.BaseUrl}repos/marcodecarlo/reactgit/issues/${id}`
+      `${globalvariables.baseUrl}repos/${globalvariables.username}/${globalvariables.repo}/issues/${id}`
     );
-  };
-  getAllCommentsData = (id) => {
-    return axios.get(
-      `${this.state.BaseUrl}repos/marcodecarlo/reactgit/issues/${id}/comments`
-    );
-  };
+  },
 
-  saveIssue = (issue) => {
+  getAllCommentsData : (id) => {
+    return axios.get(
+      `${globalvariables.baseUrl}repos/${globalvariables.username}/${globalvariables.repo}/issues/${id}/comments`
+    );
+  },
+
+  saveIssue : (issue) => {
     if (issue == "-1") {
       return axios.post(
-        `${this.state.BaseUrl}repos/marcodecarlo/reactgit/issues`,
+        `${globalvariables.baseUrl}repos/${globalvariables.username}/${globalvariables.repo}/issues`,
         issue
       );
     } else {
       return axios.post(
-        `${this.state.BaseUrl}repos/marcodecarlo/reactgit/issues/${issue.number}`,
+        `${globalvariables.baseUrl}repos/${globalvariables.username}/${globalvariables.repo}/issues/${issue.number}`,
         issue
       );
     }
-  };
+  }
+
 }
 
-export default new IssuesService();
+export default IssuesService;
