@@ -14,7 +14,7 @@ class IssuePage extends Component {
 
   componentDidMount() {
     let idIssue = this.props.match.params.id;
-    if (idIssue != "-1" && idIssue != undefined) {
+    if (idIssue !== -1 && idIssue !== undefined) {
       this.findIssue(idIssue);
     }else{
       this.setState({

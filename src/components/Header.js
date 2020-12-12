@@ -62,7 +62,10 @@ const Header = () => {
             <div className="hidden sm:block sm:ml-6">
               <div className="flex space-x-4 my-1">
                 <Link
-                  to="/add/issue"
+                  to={{
+                    pathname: "/add/issue",
+                    state: { issue: [true] }
+                  }}
                   className="button_underlined"
                 >
                   Aggiungi Issue

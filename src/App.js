@@ -13,9 +13,9 @@ function App() {
           <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
             <div className="px-4 py-6 sm:px-0">
               <Switch>
-                <Route path="/" exact component={IssuesList} />
-                <Route path="/add/issue" exact component={IssuePage} />
-                <Route path="/issues/:id" exact component={IssuePage} />
+                <Route key="home" path="/" exact component={IssuesList} />
+                <Route key="add-issue" path="/add/issue" exact component={IssuePage} />
+                <Route key="id-issue" path="/issues/:id" exact component={IssuePage} />
               </Switch>
             </div>
           </div>

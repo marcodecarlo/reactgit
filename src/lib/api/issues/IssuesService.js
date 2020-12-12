@@ -23,7 +23,7 @@ const IssuesService = {
   },
 
   saveIssue : (issue) => {
-    if (issue == "-1") {
+    if (issue === -1) {
       return axios.post(
         `${globalvariables.baseUrl}repos/${globalvariables.username}/${globalvariables.repo}/issues`,
         issue

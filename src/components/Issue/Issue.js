@@ -21,7 +21,7 @@ export default class Issue extends Component {
 
   componentDidMount() {
     let idIssue = this.props.issue.number;
-    if (idIssue != "-1" && idIssue !== undefined) {
+    if (idIssue !== -1 && idIssue !== undefined) {
       this.findAllComments(idIssue);
     }else{
       this.setState({
@@ -87,7 +87,7 @@ export default class Issue extends Component {
 
   salva = (event) => {
     let idIssue = this.props.issue.number;
-    if (idIssue !== "-1") {
+    if (idIssue !== -1) {
       const { name, value } = event.target;
       this.setState({
         issue: {
