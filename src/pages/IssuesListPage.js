@@ -1,62 +1,63 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import IssuesService from "../lib/api/issues/IssuesService.js";
 import IssuesDetails from "../components/Issue/IssueDetails.js";
 import Spinner from "../components/Spinner";
 
-class IssuesListPage extends Component {
-  state = {
-    issuesList: [],
-    loading: false,
-    errWebApi: false,
-    errMsg: "",
-  };
-  componentDidMount() {
-    this.findAllIssues();
-  }
+const IssuesListPage = () => {
+  const [issuesList, setIssuesList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [errWebApi, setErrWebApi] = useState(false);
 
-  findAllIssues = () => {
+  useEffect(() => {
+    findAllIssues();
+  }, []);
+
+  const findAllIssues = () => {
     IssuesService.getAllIssuesData()
-      .then((response) => this.handleResponse(response))
-      .catch((error) => this.handleError(error));
+      .then((response) => handleResponse(response))
+      .catch((error) => handleError(error));
   };
 
-  handleResponse = (response) => {
+  const handleResponse = (response) => {
     console.log("response");
-    this.setState({
-      issuesList: this.state.issuesList.concat(response.data),
+    setIssuesList(response.data);
+    setLoading({
       loading: true,
     });
-    console.log(this.state.issues);
-    console.log(this.state.loading);
+    debugger;
   };
 
-  handleError = (error) => {
+  const handleError = (error) => {
     console.log("response error");
     console.log(error);
 
-    this.setState({
+    setErrWebApi({
       errWebApi: true,
+    });
+    setLoading({
       loading: true,
     });
+    debugger;
   };
 
-  render() {
+  if (!loading)
     return (
       <>
-        {!this.state.loading ? (
-          <Spinner />
-        ) : (
-          <div className="flex flex-row-reverse">
-            {this.state.issuesList.map((issue) => (
-              <div className="xl:w-1/3 md:w-1/2 p-4" key={issue.id}>
-                <IssuesDetails issueDetails={issue} />
-              </div>
-            ))}
-          </div>
-        )}
+        <Spinner />
       </>
     );
-  }
-}
+
+  return (
+    <>
+      <div className="flex flex-row-reverse">
+        {issuesList.map((issue) => (
+          <div className="xl:w-1/3 md:w-1/2 p-4" key={issue.id}>
+            <IssuesDetails issueDetails={issue} />
+          </div>
+        ))}
+      </div>
+    </>
+  );
+};
 
 export default IssuesListPage;
