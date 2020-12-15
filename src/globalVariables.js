@@ -1,5 +1,6 @@
 export default {
-    baseUrl : 'https://api.github.com/',
+    baseurl : 'https://api.github.com/',
     repo: 'reactgit',
-    username: 'marcodecarlo'
+    username: 'marcodecarlo',
+    token: ''
 };

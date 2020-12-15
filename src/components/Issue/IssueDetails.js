@@ -16,7 +16,7 @@ export default class IssuesDetails extends Component {
           <div
             className={
               " w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 " +
-              (this.props.issueDetails.labels[0]?.name).replace(/ /g, "_")
+              (this.props.issueDetails.labels[0]?.name || '').replace(/ /g, "_")
             }
           >
             {this.props.issueDetails.number}

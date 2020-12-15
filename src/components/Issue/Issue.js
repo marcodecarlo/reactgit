@@ -3,6 +3,7 @@ import Moment from "moment";
 import IssuesService from "../../lib/api/issues/IssuesService";
 import "./Issue.css";
 import FormIssue from "../FormIssue";
+import globalvariables from "../../globalVariables";
 
 export default class Issue extends Component {
   state = {
@@ -12,9 +13,9 @@ export default class Issue extends Component {
       title: this.props.issue.title,
       body: this.props.issue.body,
       created_at: this.props.issue.created_at,
-      user :{
-        login : this.props.issue.user?.login,
-      }
+      user: {
+        login: this.props.issue.user?.login,
+      },
     },
     clickEdit: false,
   };
@@ -23,10 +24,15 @@ export default class Issue extends Component {
     let idIssue = this.props.issue.number;
     if (idIssue !== -1 && idIssue !== undefined) {
       this.findAllComments(idIssue);
-    }else{
+    } else {
       this.setState({
-        clickEdit: true
-      })
+        clickEdit: true,
+        issue: {
+          user: {
+            login: globalvariables.username,
+          },
+        },
+      });
     }
   }
 
@@ -61,6 +67,7 @@ export default class Issue extends Component {
 
   handleResponseIssue = (response) => {
     console.log("response issue");
+    console.log(response);
     this.setState({
       issue: this.state.issue.concat(response.data),
     });
@@ -75,8 +82,6 @@ export default class Issue extends Component {
         [name]: value,
       },
     });
-    console.log("veramente");
-    console.log(this.state.issue);
   };
 
   handleEdit = () => {
@@ -86,19 +91,18 @@ export default class Issue extends Component {
   };
 
   salva = (event) => {
-    let idIssue = this.props.issue.number;
-    if (idIssue !== -1) {
-      const { name, value } = event.target;
-      this.setState({
-        issue: {
-          [name]: value,
-        },
-      });
+  
+    const { name, value } = event.target;
+    this.setState({
+      issue: {
+        [name]: value,
+      },
+    });
 
-      console.log("anca");
-      console.log(this.state.issue);
-      this.saveIssue(this.state.issue);
-    }
+    console.log("anca");
+    console.log(this.state.issue);
+
+    this.saveIssue(this.state.issue);
   };
 
   render() {

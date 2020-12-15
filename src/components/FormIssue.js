@@ -5,11 +5,12 @@ import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import PropTypes from "prop-types";
 
 const FormIssue = ({ onSubmit, onChange, onClick, issue, clickEdit }) => {
-  let dateDMY = Moment(issue.created_at).format("DD-MM-YYYY");
+  let dateDMY = (issue.created_at) ? Moment(issue.created_at).format("DD-MM-YYYY") : Moment().format("DD-MM-YYYY");
   return (
     <form onSubmit={onSubmit}>
-      <input type="hidden" value={issue.number} name="number" id="number" />
-      <input type="hidden" value={issue.user?.login} name="user.login" id="login" />
+      <input type="hidden" value={issue?.number || '-1'} name="number" id="number" />
+      <input type="hidden" value={issue.user?.login || ''} name="user.login" id="login" />
+      <input type="hidden" value={dateDMY || ''} name="created_at" id="created_at" />
       <div className="flex">
         <div className="flex-auto">
           <h1 className="m-0">
@@ -19,13 +20,13 @@ const FormIssue = ({ onSubmit, onChange, onClick, issue, clickEdit }) => {
               id="title"
               className="p-0 title w-full"
               placeholder="Titolo"
-              value={issue.title}
+              value={issue.title || ''}
               disabled={!clickEdit}
               onChange={onChange}
             />
           </h1>
           <p className="m-0 text-sub pb-2">
-            Creata da : {issue.user?.login} il {dateDMY}
+            Creata da : {issue.user?.login || ''} il {dateDMY}
           </p>
         </div>
         <div className="flex-none text-right">
@@ -47,7 +48,7 @@ const FormIssue = ({ onSubmit, onChange, onClick, issue, clickEdit }) => {
           className="w-full h-full"
           placeholder="Testo"
           disabled={!clickEdit}
-          value={issue.body}
+          value={issue.body || ''}
           onChange={onChange}
         />
       </div>

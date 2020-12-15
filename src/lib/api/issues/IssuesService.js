@@ -5,33 +5,42 @@ const IssuesService = {
 
   getAllIssuesData : () => {
     return axios.get(
-      `${globalvariables.baseUrl}repos/${globalvariables.username}/${globalvariables.repo}/issues`,
+      `${globalvariables.baseurl}repos/${globalvariables.username}/${globalvariables.repo}/issues`,
       { timeout: 10000 }
     );
   },
 
   getIssueById : (id) => {
     return axios.get(
-      `${globalvariables.baseUrl}repos/${globalvariables.username}/${globalvariables.repo}/issues/${id}`
+      `${globalvariables.baseurl}repos/${globalvariables.username}/${globalvariables.repo}/issues/${id}`
     );
   },
 
   getAllCommentsData : (id) => {
     return axios.get(
-      `${globalvariables.baseUrl}repos/${globalvariables.username}/${globalvariables.repo}/issues/${id}/comments`
+      `${globalvariables.baseurl}repos/${globalvariables.username}/${globalvariables.repo}/issues/${id}/comments`
     );
   },
 
-  saveIssue : (issue) => {
-    if (issue === -1) {
+  saveIssue : async(issue) => {
+    debugger;
+    if (!issue.number) {
       return axios.post(
-        `${globalvariables.baseUrl}repos/${globalvariables.username}/${globalvariables.repo}/issues`,
-        issue
+        `${globalvariables.baseurl}repos/${globalvariables.username}/${globalvariables.repo}/issues`,
+        issue,{
+          headers: {
+            'Authorization': `${globalvariables.token}`
+          }
+        }
       );
     } else {
-      return axios.post(
-        `${globalvariables.baseUrl}repos/${globalvariables.username}/${globalvariables.repo}/issues/${issue.number}`,
-        issue
+      return await axios.post(
+        `${globalvariables.baseurl}repos/${globalvariables.username}/${globalvariables.repo}/issues/${issue.number}`,
+        issue,{
+          headers: {
+            'Authorization': `${globalvariables.token}`
+          }
+        }
       );
     }
   }
