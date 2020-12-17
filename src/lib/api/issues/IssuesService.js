@@ -23,7 +23,6 @@ const IssuesService = {
   },
 
   saveIssue : async(issue) => {
-    debugger;
     if (!issue.number) {
       return axios.post(
         `${globalvariables.baseurl}repos/${globalvariables.username}/${globalvariables.repo}/issues`,

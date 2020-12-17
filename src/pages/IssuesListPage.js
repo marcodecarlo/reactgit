@@ -24,7 +24,6 @@ const IssuesListPage = () => {
     setLoading({
       loading: true,
     });
-    debugger;
   };
 
   const handleError = (error) => {
@@ -37,13 +36,19 @@ const IssuesListPage = () => {
     setLoading({
       loading: true,
     });
-    debugger;
   };
 
   if (!loading)
     return (
       <>
         <Spinner />
+      </>
+    );
+
+  if (errWebApi)
+    return (
+      <>
+        <p>Errore!</p>
       </>
     );
 

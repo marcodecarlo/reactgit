@@ -30,13 +30,13 @@ const FormIssue = ({ onSubmit, onChange, onClick, issue, clickEdit }) => {
           </p>
         </div>
         <div className="flex-none text-right">
-          <FontAwesomeIcon
+          {issue.number && <FontAwesomeIcon
             icon={faEdit}
             size="lg"
             className="ml-auto"
             onClick={onClick}
             style={{ color: "orange" }}
-          />
+          />}
         </div>
       </div>
       <div className="flex">
