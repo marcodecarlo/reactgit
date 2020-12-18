@@ -30,7 +30,7 @@ export default class IssuesDetails extends Component {
           </span>
         </div>
         <div className="flex w-full">
-          <p className="text-anteprima">{this.props.issueDetails.body}</p>
+          <p className="text-anteprima truncate">{this.props.issueDetails.body}</p>
         </div>
         <div className="flex w-full justify-end">
           <a

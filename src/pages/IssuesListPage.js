@@ -54,9 +54,9 @@ const IssuesListPage = () => {
 
   return (
     <>
-      <div className="flex flex-row-reverse">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         {issuesList.map((issue) => (
-          <div className="xl:w-1/3 md:w-1/2 p-4" key={issue.id}>
+          <div className="max-h-72"  key={issue.id}>
             <IssuesDetails issueDetails={issue} />
           </div>
         ))}
