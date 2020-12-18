@@ -54,7 +54,7 @@ const IssuesListPage = () => {
 
   return (
     <>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {issuesList.map((issue) => (
           <div className="max-h-72"  key={issue.id}>
             <IssuesDetails issueDetails={issue} />

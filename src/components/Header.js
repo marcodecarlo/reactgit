@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Utente from "./Utente.js";
 
 const Header = () => {
   return (
@@ -51,10 +52,7 @@ const Header = () => {
             </div>
             <div className="hidden sm:block sm:ml-6">
               <div className="flex space-x-4 my-1">
-                <Link
-                  to="/"
-                  className="button_underlined"
-                >
+                <Link to="/" className="button_underlined">
                   Dashboard
                 </Link>
               </div>
@@ -64,12 +62,17 @@ const Header = () => {
                 <Link
                   to={{
                     pathname: "/add/issue",
-                    state: { issue: [true] }
+                    state: { issue: [true] },
                   }}
                   className="button_underlined"
                 >
                   Aggiungi Issue
                 </Link>
+              </div>
+            </div>
+            <div className="hidden sm:block sm:ml-auto">
+              <div className="flex space-x-4 my-1">
+                <Utente />
               </div>
             </div>
           </div>
