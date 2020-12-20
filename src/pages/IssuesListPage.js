@@ -1,51 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import IssuesService from "../lib/api/issues/IssuesService.js";
 import IssuesDetails from "../components/Issue/IssueDetails.js";
 import Spinner from "../components/Spinner";
 
 const IssuesListPage = () => {
-  const [issuesList, setIssuesList] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [errWebApi, setErrWebApi] = useState(false);
+  const { issuesList, getAllIssuesData } = IssuesService();
+  const { loading } = IssuesService();
+  const { error } = IssuesService();
 
   useEffect(() => {
-    findAllIssues();
+    getAllIssuesData();
   }, []);
 
-  const findAllIssues = () => {
-    IssuesService.getAllIssuesData()
-      .then((response) => handleResponse(response))
-      .catch((error) => handleError(error));
-  };
-
-  const handleResponse = (response) => {
-    console.log("response");
-    setIssuesList(response.data);
-    setLoading({
-      loading: true,
-    });
-  };
-
-  const handleError = (error) => {
-    console.log("response error");
-    console.log(error);
-
-    setErrWebApi({
-      errWebApi: true,
-    });
-    setLoading({
-      loading: true,
-    });
-  };
-
-  if (!loading)
+  if (loading)
     return (
       <>
         <Spinner />
       </>
     );
 
-  if (errWebApi)
+  if (error)
     return (
       <>
         <p>Errore!</p>
@@ -54,9 +28,9 @@ const IssuesListPage = () => {
 
   return (
     <>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {issuesList.map((issue) => (
-          <div className="max-h-72"  key={issue.id}>
+          <div className="max-h-72" key={issue.id}>
             <IssuesDetails issueDetails={issue} />
           </div>
         ))}

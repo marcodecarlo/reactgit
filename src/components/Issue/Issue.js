@@ -1,155 +1,105 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import Moment from "moment";
 import IssuesService from "../../lib/api/issues/IssuesService";
 import "./Issue.css";
 import FormIssue from "../FormIssue";
 import globalvariables from "../../globalVariables";
 
-export default class Issue extends Component {
-  state = {
-    comments: [],
-    issue: {
-      number: this.props.issue.number,
-      title: this.props.issue.title,
-      body: this.props.issue.body,
-      created_at: this.props.issue.created_at,
-      user: {
-        login: this.props.issue.user?.login,
-      },
-    },
-    clickEdit: false,
-  };
+const Issue = ({issue}) => {
+  const { comments, getAllCommentsData, saveIssue } = IssuesService();
+  const { loading } = IssuesService();
+  const { error } = IssuesService();
+  const [clickEdit, setClickEdit] = useState(false);
+  const [newissue, setNewissue] = useState(issue);
 
-  componentDidMount() {
-    let idIssue = this.props.issue.number;
+  useEffect(() => {
+    setNewissue(issue);
+    let idIssue = issue.number;
     if (idIssue !== -1 && idIssue !== undefined) {
-      this.findAllComments(idIssue);
+      findAllComments(idIssue);
+      setClickEdit(
+        false
+      );
     } else {
-      this.setState({
-        clickEdit: true,
-        issue: {
-          user: {
-            login: globalvariables.username,
-          },
-        },
-      });
+      setClickEdit(
+        true
+      );
     }
+  },[issue]);
+
+  const findAllComments = (idIssue) => {
+    getAllCommentsData(idIssue);
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setNewissue({
+        ...newissue,
+        [name]: value,
+    });
   }
 
-  findAllComments = (idIssue) => {
-    IssuesService.getAllCommentsData(idIssue)
-      .then((response) => this.handleResponse(response))
-      .catch((error) => this.handleError(error));
+  const handleEdit = () => {
+    setClickEdit(!clickEdit);
   };
 
-  saveIssue = (issue) => {
-    IssuesService.saveIssue(issue)
-      .then((response) => this.handleResponseIssue(response))
-      .catch((error) => this.handleError(error));
-  };
-
-  handleResponse = (response) => {
-    console.log("response");
-    this.setState({
-      comments: this.state.comments.concat(response.data),
-    });
-    console.log(this.state.comments);
-  };
-
-  handleError = (error) => {
-    console.log("response error");
-    console.log(error);
-
-    this.setState({
-      errWebApi: true,
-    });
-  };
-
-  handleResponseIssue = (response) => {
-    console.log("response issue");
-    console.log(response);
-    this.setState({
-      issue: this.state.issue.concat(response.data),
-    });
-    console.log(this.state.issue);
-  };
-
-  handleChange = (event) => {
+  const salva = (event) => {
     const { name, value } = event.target;
-    this.setState({
-      issue: {
-        ...this.state.issue,
-        [name]: value,
-      },
-    });
-  };
-
-  handleEdit = () => {
-    this.setState({
-      clickEdit: !this.state.clickEdit,
-    });
-  };
-
-  salva = (event) => {
-  
-    const { name, value } = event.target;
-    this.setState({
+    setNewissue({
       issue: {
         [name]: value,
       },
     });
+debugger;
 
-    console.log("anca");
-    console.log(this.state.issue);
-
-    this.saveIssue(this.state.issue);
+    saveIssue(newissue);
   };
 
-  render() {
-    return (
-      <>
-        <div className="flex flex-col rounded-md border-2 border-gray-300 p-3 h-48 divide-y divide-light-gray-400 bg-white">
-          <FormIssue
-            onSubmit={this.salva}
-            onChange={this.handleChange}
-            onClick={this.handleEdit}
-            issue={this.state.issue}
-            clickEdit={this.state.clickEdit}
-          />
-        </div>
-        {this.state.comments?.length > 0 ? (
-          this.state.comments.map((commet) => {
-            let dateCommentDMY = Moment(commet.created_at).format("DD-MM-YYYY");
-            return (
-              <div
-                className="flex flex-col w-5/6 ml-auto rounded-md border-2 border-gray-300 p-3 my-3 bg-white"
-                key={commet.id}
-              >
-                <div className="space-y-2 divide-y divide-light-gray-400">
-                  <span className="block">
-                    <p className="text-sm italic font-medium tracking-wide">
-                      {commet.user.login} il {dateCommentDMY}
-                    </p>
-                  </span>
-                  <span className="block pt-4">
-                    <p className="text-base tracking-wide"> {commet.body}</p>
-                  </span>
-                </div>
+  return (
+    <>
+      <div className="flex flex-col rounded-md border-2 border-gray-300 p-3 h-48 divide-y divide-light-gray-400 bg-white">
+        <FormIssue
+          onSubmit={salva}
+          onChange={handleChange}
+          onClick={handleEdit}
+          issue={newissue}
+          clickEdit={clickEdit}
+        />
+      </div>
+      {comments?.length > 0 ? (
+       comments.map((commet) => {
+          let dateCommentDMY = Moment(commet.created_at).format("DD-MM-YYYY");
+          return (
+            <div
+              className="flex flex-col w-5/6 ml-auto rounded-md border-2 border-gray-300 p-3 my-3 bg-white"
+              key={commet.id}
+            >
+              <div className="space-y-2 divide-y divide-light-gray-400">
+                <span className="block">
+                  <p className="text-sm italic font-medium tracking-wide">
+                    {commet.user.login} il {dateCommentDMY}
+                  </p>
+                </span>
+                <span className="block pt-4">
+                  <p className="text-base tracking-wide"> {commet.body}</p>
+                </span>
               </div>
-            );
-          })
-        ) : (
-          <div className="flex flex-col w-5/6 ml-auto rounded-md border-2 border-gray-300 p-3 my-3 bg-white">
-            <div className="space-y-1 divide-y divide-light-gray-400">
-              <span className="block">
-                <p className="text-sm italic font-medium tracking-wide">
-                  Non sono presenti commenti
-                </p>
-              </span>
             </div>
+          );
+        })
+      ) : (
+        <div className="flex flex-col w-5/6 ml-auto rounded-md border-2 border-gray-300 p-3 my-3 bg-white">
+          <div className="space-y-1 divide-y divide-light-gray-400">
+            <span className="block">
+              <p className="text-sm italic font-medium tracking-wide">
+                Non sono presenti commenti
+              </p>
+            </span>
           </div>
-        )}
-      </>
-    );
-  }
-}
+        </div>
+      )}
+    </>
+  );
+};
+
+export default Issue;

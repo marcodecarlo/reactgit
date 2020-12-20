@@ -1,28 +1,25 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import globalvariables from "../globalVariables";
+import { useHistory } from 'react-router-dom'
+import { ConfigContext } from "../App";
 
 const Utente = () => {
-  const [username, setUsername] = useState({ username: "marcodecarlo" });
-  const [repo, setRepo] = useState({ repo: "reactgit" });
+  const history = useHistory();
+  const utente = useContext(ConfigContext);
 
   const handleChangeUsername = (event) => {
     const { name, value } = event.target;
-    setUsername({
-      username: value,
-    });
+    utente.setUsername(value)
   };
   const handleChangeRepo = (event) => {
     const { name, value } = event.target;
-    setRepo({
-      repo: value,
-    });
+    utente.setRepo(value)
   };
 
-  const handleChangeUtente = () => {
-    globalvariables.username = username;
-    globalvariables.repo = repo;
+  const handleChangeUtente = (event) => {
+    event.preventDefault();
+    history.push(`/`);
   };
 
   return (

@@ -2,14 +2,14 @@ import React from "react";
 import Moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
-import PropTypes from "prop-types";
 
 const FormIssue = ({ onSubmit, onChange, onClick, issue, clickEdit }) => {
   let dateDMY = (issue.created_at) ? Moment(issue.created_at).format("DD-MM-YYYY") : Moment().format("DD-MM-YYYY");
   return (
     <form onSubmit={onSubmit}>
       <input type="hidden" value={issue?.number || '-1'} name="number" id="number" />
-      <input type="hidden" value={issue.user?.login || ''} name="user.login" id="login" />
+      <input type="hidden" value={issue.user?.login || ''} name="owner" id="login" />
+      <input type="hidden" value="reactgit" name="repo" id="login" />
       <input type="hidden" value={dateDMY || ''} name="created_at" id="created_at" />
       <div className="flex">
         <div className="flex-auto">
@@ -30,7 +30,7 @@ const FormIssue = ({ onSubmit, onChange, onClick, issue, clickEdit }) => {
           </p>
         </div>
         <div className="flex-none text-right">
-          {issue.number && <FontAwesomeIcon
+          {issue.number > 0 && <FontAwesomeIcon
             icon={faEdit}
             size="lg"
             className="ml-auto"
@@ -63,12 +63,6 @@ const FormIssue = ({ onSubmit, onChange, onClick, issue, clickEdit }) => {
   );
 };
 
-FormIssue.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired,
-  issue: PropTypes.object.isRequired,
-  clickEdit: PropTypes.bool.isRequired,
-};
+
 
 export default FormIssue;
